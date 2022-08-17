@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="orm.mapper">
+ 
+  <select id="ById" parameterType="Integer"
+  resultType="orm.tupian">
+  select * from tupian where id = #{id}
+  </select>
+  
+  <select id="Bymingcheng" parameterType="String"
+  resultType="orm.tupian">
+  select * from tupian where mingcheng = #{mingcheng}
+  </select>
+  
+  <select id="BymingchengString" parameterType="String"
+  resultType="String">
+  select jianjie from tupian where mingcheng = #{mingcheng}
+  </select>
+  
+  <select id="gonggao" parameterType="String"
+  resultType="String">
+  select neirong from gonggao where biaoti = #{biaoti}
+  </select>
+  
+  <select id="ByIdMingcheng" parameterType="orm.tupian"
+  resultType="orm.tupian">
+  select * from tupian where 1=1
+  <if test="id !=null and id !=''">
+   and id like concat('%',#{id},'%')
+  </if>
+  <if test="mingcheng !=null and mingcheng !=''">
+   and mingcheng like concat('%',#{mingcheng},'%')
+  </if>
+  </select>
+ </mapper>
